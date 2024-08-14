@@ -1,12 +1,13 @@
 services:
     webserver:
         build: .
+        restart: always
         volumes:
             - ./www:/var/www/html
         ports:
             - "8081:80"
         
-
+        
     mysql:
         image: mysql:5.7
         environment:
@@ -22,5 +23,12 @@ services:
 
     phpmyadmin:
         image: phpmyadmin:latest
+        environment:
+            - PMA_ARBITRARY=1
         ports:
-            - "8082:80"
+            - "8082:80" 
+
+    # apache:
+    #     image: httpd:2.4
+    #     ports:
+    #         - "8080:80"
